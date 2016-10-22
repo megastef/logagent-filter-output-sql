@@ -1,0 +1,31 @@
+{
+  "name": "@sematext/logagent-filter-output-sql",
+  "version": "1.0.0",
+  "description": "Filter and aggregate parsed logs with SQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megastef/logagent-filter-output-sql.git"
+  },
+  "keywords": [
+    "log",
+    "management",
+    "sql",
+    "elasticsearch",
+    "log",
+    "parser",
+    "aggregation"
+  ],
+  "author": "Stefan Thies",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/megastef/logagent-filter-output-sql/issues"
+  },
+  "homepage": "https://github.com/megastef/logagent-filter-output-sql#readme",
+  "dependencies": {
+    "alasql": "^0.3.3"
+  }
+}
