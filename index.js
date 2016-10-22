@@ -30,7 +30,7 @@ function runQueries (buf, cfg, eventEmitter) {
         }
       } else {
         if (result) {
-          // eventEmitter.emit('data.parsed', result, cfg.buffer[buf].context)
+          eventEmitter.emit('data.parsed', result, cfg.buffer[buf].context)
         }
       }
     }
