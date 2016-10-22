@@ -20,18 +20,21 @@ function runQueries (buf, cfg, eventEmitter) {
   if (tmpData) {
     for (var q in tmpData.queries) {
       var result = tmpData.queries[q]([tmpData.data])
-      if (result && result.length) {
+      if (result && result.length === 0) {
+        return
+      }
+      if (result && result.length > 0) {
         // emit events to output modules, listening for "data.parsed" events
         for (var i = 0; i < result.length; i++) {
           eventEmitter.emit('data.parsed', result[i], cfg.buffer[buf].context)
         }
       } else {
         if (result) {
-          eventEmitter.emit('data.parsed', result, cfg.buffer[buf].context)
+          // eventEmitter.emit('data.parsed', result, cfg.buffer[buf].context)
         }
       }
-      tmpData.data = null
     }
+    tmpData.data = null
     cfg.buffer[buf] = null
   }
 }
@@ -63,7 +66,6 @@ function sqlFilter (context, config, eventEmitter, data, callback) {
   if (data == null) {
     return callback(new Error('data is null'), null)
   }
-  // console.log(arguments)
   if (config.source.test(context.sourceName)) {
     init(config, context, eventEmitter)
     bufferEvents(context, config, data)

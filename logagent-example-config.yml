@@ -3,13 +3,23 @@ input:
     - './access.log'
 
 outputFilter:
-  - module: '@sematext/logagent-filter-output-sql'
+  - module: logagent-filter-output-sql
     config:
       source: !!js/regexp /access.log|httpd/
       interval: 1
       queries:
-        - SELECT 'apache_stats' as _type, AVG(size) as size_avg, count(method) as method_count, method from ? GROUP BY method
-        - SELECT * FROM ? where status_code>399
+        - # calculate average page size for different HTTP methods
+          SELECT 'apache_stats' AS _type, 
+                  AVG(size) AS size_avg, 
+                  COUNT(method) AS method_count, 
+                  method as http_method
+          FROM ? 
+          GROUP BY method
+        - # log each request to the login page 
+          SELECT * 
+          FROM ? 
+          WHERE path like "/wp-login%" 
+
 output:
   elasticsearch:
     url: http://localhost:9200
