@@ -11,7 +11,7 @@ Assuming @sematext/logagent is installed gloabally:
 
 ```
 npm i -g @sematext/logagent
-npm i -g @sematext/logagent-filter-output-sql
+npm i -g logagent-filter-output-sql
 ```
 
 # Configuration 
@@ -24,7 +24,7 @@ input:
     - './access.log'
 
 outputFilter:
-  - module: '@sematext/logagent-filter-output-sql'
+  - module: logagent-filter-output-sql
     config:
       source: !!js/regexp /access.log|httpd/
       interval: 1 # every second
