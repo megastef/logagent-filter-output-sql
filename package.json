@@ -1,6 +1,6 @@
 {
   "name": "@sematext/logagent-filter-output-sql",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Filter and aggregate parsed logs with SQL",
   "main": "index.js",
   "scripts": {
