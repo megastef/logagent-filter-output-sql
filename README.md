@@ -1,9 +1,9 @@
 # logagent-filter-output-sql
-Filter and aggregate parsed logs with SQL  and [@sematext/logagent](https://sematext/logagent)
+Filter and aggregate parsed logs with SQL  and [@sematext/logagent](https://sematext.com/logagent)
 
 This applies SQL queries on parsed log events. The result of the query is emitted as new event, while the original events are omitted. 
 
-Using SQL it is very easy to aggregate values, e.g. group HTTP requests by status codes. The SQL WHERE statemtn helps to filter events, before they get shipped to Elasticsearch or [Logsene](https://sematext.com/logsene). 
+Using SQL it is very easy to aggregate values, e.g. group HTTP requests by status codes. The SQL WHERE statement is useful to filter events, before they get shipped to Elasticsearch or [Logsene](https://sematext.com/logsene). 
 
 # Installation 
 
