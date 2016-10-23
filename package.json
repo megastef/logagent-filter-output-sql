@@ -1,6 +1,6 @@
 {
   "name": "logagent-filter-output-sql",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Filter and aggregate parsed logs with SQL",
   "main": "index.js",
   "scripts": {
