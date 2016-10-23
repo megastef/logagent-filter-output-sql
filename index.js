@@ -29,9 +29,6 @@ function runQueries (buf, cfg, eventEmitter) {
   if (tmpData) {
     for (var q in tmpData.queries) {
       var result = executeQuery(tmpData.queries[q], [tmpData.data], eventEmitter)
-      if (result && result.length === 0) {
-        return
-      }
       if (result && result.length > 0) {
         // emit events to output modules, listening for "data.parsed" events
         for (var i = 0; i < result.length; i++) {
