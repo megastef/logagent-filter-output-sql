@@ -15,11 +15,20 @@ function init (config, laContext, eventEmitter) {
   config.timerFunc = setInterval(queryRunner, (config.interval * 1000) || 1000)
 }
 
+function executeQuery (query, data, eventEmitter) {
+  try {
+    return query(data)
+  } catch (err) {
+    eventEmitter.emit('error', new Error('Error in outputFilter / SQL query: ' + err), err)
+    return null
+  }
+}
+
 function runQueries (buf, cfg, eventEmitter) {
   var tmpData = cfg.buffer[buf]
   if (tmpData) {
     for (var q in tmpData.queries) {
-      var result = tmpData.queries[q]([tmpData.data])
+      var result = executeQuery(tmpData.queries[q], [tmpData.data], eventEmitter)
       if (result && result.length === 0) {
         return
       }
