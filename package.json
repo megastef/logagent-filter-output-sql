@@ -1,10 +1,10 @@
 {
   "name": "logagent-filter-output-sql",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Filter and aggregate parsed logs with SQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -12,9 +12,6 @@
   },
   "directories": {
     "test": "test"
-  },
-  "scripts": {
-    "test": "mocha"
   },
   "keywords": [
     "log",
