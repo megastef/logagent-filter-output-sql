@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/megastef/logagent-filter-output-sql.git"
   },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "log",
     "management",
