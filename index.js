@@ -45,9 +45,12 @@ function runQueries (buf, cfg, eventEmitter) {
   }
 }
 // buffer logs per source to run SQL queries on it
-function bufferEvents (context, config, data) {
+function bufferEvents (context, config, eventEmitter, data) {
   if (!config.buffer) {
     config.buffer = {}
+    if (config.debug) {
+      eventEmitter.on('error', console.error)
+    }
   }
   if (!config.buffer[context.logSource]) {
     config.buffer[context.logSource] = {
@@ -61,7 +64,7 @@ function bufferEvents (context, config, data) {
         var query = alasql.compile(queryStr)
         config.buffer[context.logSource].queries.push(query)
       } catch (err) {
-        console.log('Error in sql output filter:', err.message)
+        eventEmitter.emit('error', new Error('Error in sql output filter: ' + err.message))
       }
     }
   }
@@ -74,9 +77,9 @@ function sqlFilter (context, config, eventEmitter, data, callback) {
   }
   if (config.source.test(context.sourceName)) {
     init(config, context, eventEmitter)
-    bufferEvents(context, config, data)
+    bufferEvents(context, config, eventEmitter, data)
     // drop single events, we will generate one event per interval
-    callback(new Error('droped event for aggregation'), null)
+    callback()
   } else {
     // pass data of other log sources, to be handled by other filters
     callback(null, data)
